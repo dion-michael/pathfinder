@@ -1,0 +1,276 @@
+{
+    "Routes": [{
+            "PreferenceLabel": "RECOMMENDED",
+            "DurationMinutes": 50,
+            "WalkMinutes": 3,
+            "DepartureTime": "19:48",
+            "ArrivalTime": "20:38",
+            "Price": 4000,
+            "Currency": "IDR",
+            "RouteSegments": [{
+                    "RouteSegmentType": 1,
+                    "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=walksegment",
+                    "DurationMinutes": 2,
+                    "WalkDistanceMeters": 127,
+                    "DistanceMeters": 127,
+                    "StopsCount": 0,
+                    "StartPoint": {
+                        "Name": "",
+                        "Coordinate": {
+                            "Lat": -6.260516166687012,
+                            "Lng": 106.7816162109375
+                        },
+                        "Time": "19:48",
+                        "Id": "_-6.26051616668701;106.781616210938"
+                    },
+                    "EndPoint": {
+                        "Name": "Masjid Pondok Indah",
+                        "Coordinate": {
+                            "Lat": -6.26143741607666,
+                            "Lng": 106.78204345703125
+                        },
+                        "Time": "19:50",
+                        "Id": "idjkb_270009276"
+                    },
+                    "Shape": "fwee@cxvjSFEt@?Jm@REr@SPEHE@@F@",
+                    "Transport": null,
+                    "OtherTransports": []
+                },
+                {
+                    "RouteSegmentType": 2,
+                    "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=transport/idjkb_kopaja_minibus_3B7054_86",
+                    "DurationMinutes": 33,
+                    "WalkDistanceMeters": 0,
+                    "DistanceMeters": 11067,
+                    "StopsCount": 26,
+                    "StartPoint": {
+                        "Name": "Masjid Pondok Indah",
+                        "Coordinate": {
+                            "Lat": -6.26143741607666,
+                            "Lng": 106.78204345703125
+                        },
+                        "Time": "20:04",
+                        "Id": "idjkb_270009276"
+                    },
+                    "EndPoint": {
+                        "Name": "Taman Anggrek",
+                        "Coordinate": {
+                            "Lat": -6.1762542724609375,
+                            "Lng": 106.79288482666016
+                        },
+                        "Time": "20:37",
+                        "Id": "idjkb_1583911099"
+                    },
+                    "Shape": "~|ee@wzvjSAG_@N_B`@iBPwKHgEDoEBuF?eAGaBDqKP}ABaGTsB\\[BaALgABs@?}BA_BMwDo@oI}BUG??kCi@]K??sDc@yGUwCKwDEwCSiBWuAe@cFeBO@sDqAaAe@e@]mAgAuAyAIOk@o@iBkCuDqG}AcBmH}EuDgCy@k@sCoAsAOq@Do@Ju@b@eBdBiHhIoArAQZEd@Bf@HXRZ\\T^DZ?VGXUtAeBJ]Eo@Yc@wDqBoAm@iGaDsDiA{Bw@??iM_E_OwEQEkEaCiEwDaA{@cGcGs@a@_A[gASy@EmACoFLuBA{Bi@sKkDoKqDmC{BkBsCeBoEUIQAQBqHrCm@L]@k@ViC`AwAp@sEvAwC|@oB^_F~@mC`@}B\\eF`@uGNi[l@iVXuP`@oCRu@Ni@N_@Dw@L{An@mBfAoCxAyBhA??k@TKNkGxGo@v@A@",
+                    "Transport": {
+                        "Name": "86 Kopaja bus",
+                        "Color": "3B7054",
+                        "Direction": "Towards Kota",
+                        "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=transport/idjkb_kopaja_minibus_3B7054_86",
+                        "ScheduleId": "idjkb_B86",
+                        "TrackId": "c-b"
+                    },
+                    "OtherTransports": []
+                },
+                {
+                    "RouteSegmentType": 1,
+                    "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=walksegment",
+                    "DurationMinutes": 1,
+                    "WalkDistanceMeters": 103,
+                    "DistanceMeters": 103,
+                    "StopsCount": 0,
+                    "StartPoint": {
+                        "Name": "Taman Anggrek",
+                        "Coordinate": {
+                            "Lat": -6.1762542724609375,
+                            "Lng": 106.79288482666016
+                        },
+                        "Time": "20:37",
+                        "Id": "idjkb_1583911099"
+                    },
+                    "EndPoint": {
+                        "Name": "",
+                        "Coordinate": {
+                            "Lat": -6.176095008850098,
+                            "Lng": 106.79216003417969
+                        },
+                        "Time": "20:38",
+                        "Id": "_-6.1760950088501;106.79216003418"
+                    },
+                    "Shape": "phud@o~xjSCBi@l@Ml@IL^^F@",
+                    "Transport": null,
+                    "OtherTransports": []
+                }
+            ]
+        },
+        {
+            "PreferenceLabel": "TRANSJAKARTA",
+            "DurationMinutes": 67,
+            "WalkMinutes": 16,
+            "DepartureTime": "19:48",
+            "ArrivalTime": "20:55",
+            "Price": 3500,
+            "Currency": "IDR",
+            "RouteSegments": [{
+                    "RouteSegmentType": 1,
+                    "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=walksegment",
+                    "DurationMinutes": 8,
+                    "WalkDistanceMeters": 526,
+                    "DistanceMeters": 526,
+                    "StopsCount": 0,
+                    "StartPoint": {
+                        "Name": "",
+                        "Coordinate": {
+                            "Lat": -6.260516166687012,
+                            "Lng": 106.7816162109375
+                        },
+                        "Time": "19:48",
+                        "Id": "_-6.26051616668701;106.781616210938"
+                    },
+                    "EndPoint": {
+                        "Name": "Tanah Kusir Kodim",
+                        "Coordinate": {
+                            "Lat": -6.2569732666015625,
+                            "Lng": 106.7817153930664
+                        },
+                        "Time": "19:56",
+                        "Id": "idjkb_8-5 Tanah Kusir Kodim"
+                    },
+                    "Shape": "fwee@cxvjSFEt@?Jm@WHKBuAHc@@k@?y@Bm@@qA?K?mDFkA@yA??ZS???Wc@",
+                    "Transport": null,
+                    "OtherTransports": []
+                },
+                {
+                    "RouteSegmentType": 2,
+                    "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=transport/idjkb_brt_transjakarta_DA259A_8",
+                    "DurationMinutes": 43,
+                    "WalkDistanceMeters": 0,
+                    "DistanceMeters": 15770,
+                    "StopsCount": 14,
+                    "StartPoint": {
+                        "Name": "Tanah Kusir Kodim",
+                        "Coordinate": {
+                            "Lat": -6.2569732666015625,
+                            "Lng": 106.7817153930664
+                        },
+                        "Time": "20:00",
+                        "Id": "idjkb_8-5 Tanah Kusir Kodim"
+                    },
+                    "EndPoint": {
+                        "Name": "Grogol 1",
+                        "Coordinate": {
+                            "Lat": -6.166798114776611,
+                            "Lng": 106.7896957397461
+                        },
+                        "Time": "20:43",
+                        "Id": "idjkb_3-11 GROGOL 1"
+                    },
+                    "Shape": "`aee@wxvjSDHuVDcBDwDFwGXsD`@_CJqEGgC[aRsEoC_@yG[cNWkBScBa@CAuMuEqBsA{DcEuB{CWc@sC{EaBeB_PsK_CeAWKiAOgBJm@Vk@f@gAtAiHhI_A`AsBzBaBhBqIvGORgB|BmBfDu@fB_JzSaDfIiBrCiDpFoJtLiFnEeDfB}CjAqK~DkD|@_FdByK~BaGt@]D}NP_Fd@_Jb@e\\`@mE?oK@sCHqBU_CJiCJuADiHj@oKDkAR}B\\gLlD{QtDs^~B}DVwOdBgGlAc@RsMvFcAXeEh@gF\\G?yQGiNGsBCIsABsBOeBa@gBkB}FMaBh@mBzCeFn@c@`EkAxDiAxAs@fAaCtJ}\\xGkUf@oCEyInCkUtC{GNu@DWr@iFBQBw@C}BG}AAuA",
+                    "Transport": {
+                        "Name": "8 TransJakarta",
+                        "Color": "DA259A",
+                        "Direction": "Towards Harmoni",
+                        "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=transport/idjkb_brt_transjakarta_DA259A_8",
+                        "ScheduleId": "idjkb_8",
+                        "TrackId": "8.001"
+                    },
+                    "OtherTransports": []
+                },
+                {
+                    "RouteSegmentType": 1,
+                    "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=walksegment",
+                    "DurationMinutes": 4,
+                    "WalkDistanceMeters": 141,
+                    "DistanceMeters": 141,
+                    "StopsCount": 0,
+                    "StartPoint": {
+                        "Name": "Grogol 1",
+                        "Coordinate": {
+                            "Lat": -6.166798114776611,
+                            "Lng": 106.7896957397461
+                        },
+                        "Time": "20:42",
+                        "Id": "idjkb_3-11 GROGOL 1"
+                    },
+                    "EndPoint": {
+                        "Name": "Grogol 2",
+                        "Coordinate": {
+                            "Lat": -6.167393684387207,
+                            "Lng": 106.7885513305664
+                        },
+                        "Time": "20:46",
+                        "Id": "idjkb_9-18B GROGOL 2 ARAH BEKASI"
+                    },
+                    "Shape": "nmsd@qjxjStBbF",
+                    "Transport": null,
+                    "OtherTransports": []
+                },
+                {
+                    "RouteSegmentType": 2,
+                    "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=transport/idjkb_brt_transjakarta_5D9DA8_9E",
+                    "DurationMinutes": 4,
+                    "WalkDistanceMeters": 0,
+                    "DistanceMeters": 1139,
+                    "StopsCount": 3,
+                    "StartPoint": {
+                        "Name": "Grogol 2",
+                        "Coordinate": {
+                            "Lat": -6.167393684387207,
+                            "Lng": 106.7885513305664
+                        },
+                        "Time": "20:47",
+                        "Id": "idjkb_9-18B GROGOL 2 ARAH BEKASI"
+                    },
+                    "EndPoint": {
+                        "Name": "S. Parman Podomoro City",
+                        "Coordinate": {
+                            "Lat": -6.175839424133301,
+                            "Lng": 106.7931137084961
+                        },
+                        "Time": "20:51",
+                        "Id": "idjkb_9-17B S. PARMAN PODOMORO CITY ARAH BEKASI"
+                    },
+                    "Shape": "dqsd@mcxjSBQbCR~ADN?N@vDOHAlDS|Cu@`Bq@nAw@lCoB~BkCjEsEnEcFNOVO",
+                    "Transport": {
+                        "Name": "9E TransJakarta",
+                        "Color": "5D9DA8",
+                        "Direction": "Towards Kebayoran Lama",
+                        "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=transport/idjkb_brt_transjakarta_5D9DA8_9E",
+                        "ScheduleId": "idjkb_9E",
+                        "TrackId": "N22.201B"
+                    },
+                    "OtherTransports": []
+                },
+                {
+                    "RouteSegmentType": 1,
+                    "IconUrl": "https://cdn.trafi.com/icon.ashx?size=64&style=v2&src=walksegment",
+                    "DurationMinutes": 4,
+                    "WalkDistanceMeters": 124,
+                    "DistanceMeters": 124,
+                    "StopsCount": 0,
+                    "StartPoint": {
+                        "Name": "S. Parman Podomoro City",
+                        "Coordinate": {
+                            "Lat": -6.175839424133301,
+                            "Lng": 106.7931137084961
+                        },
+                        "Time": "20:51",
+                        "Id": "idjkb_9-17B S. PARMAN PODOMORO CITY ARAH BEKASI"
+                    },
+                    "EndPoint": {
+                        "Name": "",
+                        "Coordinate": {
+                            "Lat": -6.176095008850098,
+                            "Lng": 106.79216003417969
+                        },
+                        "Time": "20:55",
+                        "Id": "_-6.1760950088501;106.79216003418"
+                    },
+                    "Shape": "~eud@}_yjSb@xB??IDCLIL^^F@",
+                    "Transport": null,
+                    "OtherTransports": []
+                }
+            ]
+        }
+    ]
+}
