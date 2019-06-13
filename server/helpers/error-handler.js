@@ -1,4 +1,5 @@
 module.exports = function (err, req, res, next) {
+    console.log(err)
     if (err.code === 400) {
         res.status(400).json({
             message: "Bad request"
