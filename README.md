@@ -1,1 +1,4 @@
 # group_project
+
+SECRET_KEY=secretcat
+GOOGLE_CLIENT_ID=895569067234-f405kfpghfta7fduvlpqderjcb8torjl.apps.googleusercontent.com
