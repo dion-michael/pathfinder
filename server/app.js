@@ -6,9 +6,13 @@ const cors = require('cors')
 const app = express()
 const errorHandler = require('./helpers/error-handler.js')
 
-mongoose.connect('mongodb://localhost/group_project', {useNewUrlParser: true})
+mongoose.connect('mongodb://localhost/group_project', {
+    useNewUrlParser: true
+})
 
-app.use(express.urlencoded({ extended: false }))
+app.use(express.urlencoded({
+    extended: false
+}))
 app.use(express.json())
 app.use(cors())
 
@@ -16,6 +20,6 @@ app.use("/", routes)
 app.use(errorHandler)
 
 let PORT = 3000
-app.listen(PORT, ()=> {
+app.listen(PORT, () => {
     console.log(`connected to localhost ${PORT}`)
 });
