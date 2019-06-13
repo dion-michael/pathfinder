@@ -64,7 +64,7 @@ function onSignIn(googleUser) {
       }
   })
   .done(function(response){
-      localStorage.setItem('access_token', response.token)
+      localStorage.setItem('access_token', response.access_token)
       showHome()
   })
   .fail(function(jqXHR, textStatus){
