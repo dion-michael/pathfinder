@@ -1,4 +1,6 @@
 const url = "http://localhost:3000";
+let fromPos
+let toPos
 
 function register(email, password) {
   $("#errMessage").hide()
@@ -132,7 +134,6 @@ function onSignIn(googleUser) {
         console.log(jqXHR);
       }
     })
-
 }
 
 $("#toggle").click(function (event) {
@@ -140,33 +141,35 @@ $("#toggle").click(function (event) {
   toggleBtn()
 })
 
-function getLocation(){
-  if(navigator.geolocation){
-    var options = {timeout:60000}
+function getLocation() {
+  if (navigator.geolocation) {
+    var options = {
+      timeout: 60000
+    }
     navigator.geolocation.getCurrentPosition(showLocation)
   } else {
     console.log('browser doesnt support geolocation')
   }
 }
 
-function showLocation(position){
+function showLocation(position) {
   var latitude = position.coords.latitude
   var longitude = position.coords.longitude
   var both = `${latitude},${longitude}`
-  var coor = [latitude,longitude]
+  var coor = [latitude, longitude]
   $.ajax({
-    url: `${url}/weather`,
-    method: "POST",
-    data: {
-      both: both,
-      coor: coor
-    },
-    headers: {
-      access_token: localStorage.getItem("access_token")
-    }
-  })
-    .done(function(response) {
-      if (response.currently.icon == 'fog'){
+      url: `${url}/weather`,
+      method: "POST",
+      data: {
+        both: both,
+        coor: coor
+      },
+      headers: {
+        access_token: localStorage.getItem("access_token")
+      }
+    })
+    .done(function (response) {
+      if (response.currently.icon == 'fog') {
         response.currently.icon = 'cloud'
       }
       console.log(response)
@@ -180,7 +183,7 @@ function showLocation(position){
 
       `)
     })
-    .fail(function(jqXHR, textStatus) {
+    .fail(function (jqXHR, textStatus) {
       console.log(jqXHR);
     });
 }
@@ -278,4 +281,15 @@ function renderGsignIn() {
     'onsuccess': onSignIn,
     // 'onfailure': onFailure
   });
+}
+
+$("#findRouteBtn").click(function () {
+  let from = $("#from").val()
+  let to = $("#from").val()
+  console.log(from);
+  console.log(to);
+})
+
+function findLocation() {
+
 }
