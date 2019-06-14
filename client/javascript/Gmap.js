@@ -25,11 +25,11 @@ function initMap() {
         user: {
             url: 'https://i.imgur.com/uIW18Jp.png',
             // (width,height)
-            scaledSize: new google.maps.Size(50, 50),
+            scaledSize: new google.maps.Size(20, 20),
             // The origin point (x,y)
             origin: new google.maps.Point(0, 0),
             // The anchor point (x,y)
-            anchor: new google.maps.Point(25, 50),
+            anchor: new google.maps.Point(10, 20),
         }
     }
 
@@ -39,8 +39,105 @@ function initMap() {
         styles: mapStyle,
         zoom: 16
     });
-    geocoder = new google.maps.Geocoder()
-    infoWindow = new google.maps.InfoWindow;
+    // geocoder = new google.maps.Geocoder()
+    // infoWindow = new google.maps.InfoWindow;
+    let fBox = document.getElementById('from')
+    let tBox = document.getElementById('to')
+    let fromBox = new google.maps.places.SearchBox(fBox)
+    let toBox = new google.maps.places.SearchBox(tBox)
+
+    map.addListener('bounds_changed', function () {
+        fromBox.setBounds(map.getBounds())
+        toBox.setBounds(map.getBounds())
+    })
+
+
+
+    fromBox.addListener(
+        'places_changed',
+        function () {
+            var places = fromBox.getPlaces()
+            if (places.length == 0) {
+                return
+            }
+            console.log(places);
+            let markers = []
+            var bounds = new google.maps.LatLngBounds()
+            places.forEach(place => {
+                if (!place.geometry) {
+                    console.log("no geometry");
+                    return
+                }
+                fromPos = {
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng()
+                };
+                console.log(fromPos);
+                var icon = {
+                    url: "https://image.flaticon.com/icons/png/128/149/149060.png",
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(40, 40)
+                }
+                markers.push(new google.maps.Marker({
+                    map,
+                    icon,
+                    title: place.name,
+                    position: place.geometry.location
+                }))
+                if (place.geometry.viewport) {
+                    bounds.union(place.geometry.viewport)
+                } else {
+                    bounds.extend(place.geometry.location)
+                }
+            })
+            map.fitBounds(bounds)
+        }
+    )
+    toBox.addListener(
+        'places_changed',
+        function () {
+            var places = toBox.getPlaces()
+            if (places.length == 0) {
+                return
+            }
+            console.log(places);
+            let markers = []
+            var bounds = new google.maps.LatLngBounds()
+            places.forEach(place => {
+                if (!place.geometry) {
+                    console.log("no geometry");
+                    return
+                }
+                console.log(place);
+                toPos = {
+                    lat: place.geometry.location.lat(),
+                    lng: place.geometry.location.lng()
+                };
+                console.log(toPos);
+                var icon = {
+                    url: "https://image.flaticon.com/icons/png/128/149/149060.png",
+                    size: new google.maps.Size(71, 71),
+                    origin: new google.maps.Point(0, 0),
+                    anchor: new google.maps.Point(17, 34),
+                    scaledSize: new google.maps.Size(40, 40)
+                }
+                markers.push(new google.maps.Marker({
+                    map,
+                    icon,
+                    title: place.name,
+                    position: place.geometry.location
+                }))
+                if (place.geometry.viewport) {
+                    bounds.union(place.geometry.viewport)
+                } else {
+                    bounds.extend(place.geometry.location)
+                }
+            })
+            map.fitBounds(bounds)
+        }
+    )
     // Try HTML5 geolocation.
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(function (position) {
@@ -74,9 +171,11 @@ function initMap() {
         lat: -6.251461,
         lng: 106.791731
     }
-    displayRoute(location_a, location_b, "WALKING")
-    displayRoute(location_b, location_c, "DRIVING")
+    // displayRoute(location_a, location_b, "WALKING")
+    // displayRoute(location_b, location_c, "DRIVING")
 }
+
+
 
 
 function displayRoute(location_a, location_b, method) {

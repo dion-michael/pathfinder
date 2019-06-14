@@ -18,6 +18,8 @@
     "google": "^2.1.0",
     "google-auth-library": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.5.15"
+    "mongoose": "^5.5.15",
+    "morgan": "^1.9.1",
+    "path": "^0.12.7"
   }
 }
