@@ -82,6 +82,7 @@ function login(email, password) {
         // localStorage.setItem("email", user.email)
         $(".ui.form").removeClass("loading")
         checkLogin()
+        showHome()
       },
       404: function (err) {
         console.log(err);
@@ -165,9 +166,11 @@ function showLocation(position){
     }
   })
     .done(function(response) {
+      if (response.currently.icon == 'fog')
       console.log(response)
       $('#weather').html(`
         ${response.timezone}<br>
+        <i class="fas fa-cloud"></i>
         ${response.currently.icon}<br>
         ${response.currently.temperature}°C<br>
         ${response.currently.summary}<br>
@@ -216,9 +219,9 @@ function showHome() {
 function checkLogin() {
   if (localStorage.getItem('token')) {
     $("#loginForm").hide()
-    $("#homePage").show();
+    showHome()
   } else {
-    $("#loginForm").show()
+    showLogin()
     $("#homePage").hide();
   }
 }
