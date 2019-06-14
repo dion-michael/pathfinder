@@ -158,7 +158,6 @@ function showLocation(position) {
   var both = `${latitude},${longitude}`
   var coor = [latitude, longitude]
   $.ajax({
-<<<<<<< HEAD
       url: `${url}/weather`,
       method: "POST",
       data: {
@@ -170,49 +169,33 @@ function showLocation(position) {
       }
     })
     .done(function (response) {
-      if (response.currently.icon == 'fog') {
-        response.currently.icon = 'cloud'
-=======
-    url: `${url}/weather`,
-    method: "POST",
-    data: {
-      both: both,
-      coor: coor
-    },
-    headers: {
-      access_token: localStorage.getItem("access_token")
-    }
-  })
-    .done(function(response) {
       console.log(response.hourly.icon)
-      if (response.hourly.icon == 'clear-day'){
+      if (response.hourly.icon == 'clear-day') {
         response.hourly.icon = 'CLEAR_DAY'
 
-      } else if (response.hourly.icon == 'clear-night'){
+      } else if (response.hourly.icon == 'clear-night') {
         response.hourly.icon = 'CLEAR_NIGHT'
 
-      } else if (response.hourly.icon == 'partly-cloudy-day'){
+      } else if (response.hourly.icon == 'partly-cloudy-day') {
         response.hourly.icon = 'PARTLY_CLOUDY_DAY'
 
-      } else if (response.hourly.icon == 'partly-cloudy-night'){
+      } else if (response.hourly.icon == 'partly-cloudy-night') {
         response.hourly.icon = 'PARTLY_CLOUDY_NIGHT'
 
-      } else if (response.hourly.icon == 'cloudy'){
+      } else if (response.hourly.icon == 'cloudy') {
         response.hourly.icon = 'CLOUDY'
 
-      } else if (response.hourly.icon == 'rain'){
+      } else if (response.hourly.icon == 'rain') {
         response.hourly.icon = 'RAIN'
 
-      } else if (response.hourly.icon == 'sleet'){
+      } else if (response.hourly.icon == 'sleet') {
         response.hourly.icon = 'SLEET'
 
-      } else if (response.hourly.icon == 'snow'){
+      } else if (response.hourly.icon == 'snow') {
         response.hourly.icon = 'SNOW'
 
-      } else if (response.hourly.icon == 'fog'){
+      } else if (response.hourly.icon == 'fog') {
         response.hourly.icon = 'FOG'
-        
->>>>>>> 2
       }
       console.log(response)
       $('#weather').html(`
@@ -336,10 +319,10 @@ function renderGsignIn() {
   });
 }
 
-function trafiRoute(result){
+function trafiRoute(result) {
   let route = result["Routes"][0] // RECOMMENDED, CHEAPER, TRANSJAKARTA (based on preference labels)
-  for(let i = 0; i < result["Routes"].length; i++){
-    if(result["Routes"][i]["PreferenceLabel"] === "TRANSJAKARTA"){
+  for (let i = 0; i < result["Routes"].length; i++) {
+    if (result["Routes"][i]["PreferenceLabel"] === "TRANSJAKARTA") {
       route = result["Routes"][i]
     }
   }
@@ -348,8 +331,8 @@ function trafiRoute(result){
   let departTime = route["DepartureTime"]
   let arriveTime = route["ArrivalTime"]
   let price = route["Price"]
-  let location = []  
-  for(let i = 0; i < route["RouteSegments"].length; i++){
+  let location = []
+  for (let i = 0; i < route["RouteSegments"].length; i++) {
     let routeSegment = route["RouteSegments"][i]
     let dispRoute = []
     let start = {
@@ -366,15 +349,16 @@ function trafiRoute(result){
     }
     dispRoute.push(start)
     dispRoute.push(end)
-    if(routeSegment["RouteSegmentType"] === 1){
+    if (routeSegment["RouteSegmentType"] === 1) {
       dispRoute.push("WALKING")
     } else {
       dispRoute.push("DRIVING")
     }
     // dispRoute(start_loc, end_loc, type)
-    location.push(dispRoute)        
+    location.push(dispRoute)
   }
-}$("#findRouteBtn").click(function () {
+}
+$("#findRouteBtn").click(function () {
   let from = $("#from").val()
   let to = $("#from").val()
   console.log(from);
