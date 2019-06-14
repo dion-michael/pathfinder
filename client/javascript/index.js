@@ -166,12 +166,14 @@ function showLocation(position){
     }
   })
     .done(function(response) {
-      if (response.currently.icon == 'fog')
+      if (response.currently.icon == 'fog'){
+        response.currently.icon = 'cloud'
+      }
       console.log(response)
       $('#weather').html(`
         ${response.timezone}<br>
-        <i class="fas fa-cloud"></i>
-        ${response.currently.icon}<br>
+        <i class="fas fa-${response.currently.icon}"></i>
+        <br>
         ${response.currently.temperature}°C<br>
         ${response.currently.summary}<br>
         ${response.daily.summary}<br>
