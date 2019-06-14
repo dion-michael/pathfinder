@@ -15,9 +15,27 @@
     <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
     integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/map.css">
     <title>Pathfinder</title>
+    <style>
+        tr{
+            vertical-align: top;
+            text-align:center;
+        }
+        #table2 {
+            display: block;
+        }
+            
+        #icon:hover + #table2 {
+            display: block;
+        }
+
+        #table1:hover + #table2 {
+            display: block;
+        }
+    </style>
 
 </head>
 
@@ -87,7 +105,6 @@
                             </div>
                         </div>
                         <div class="ui attached segment" style="text-align: center">
-                            <i class="disabled huge sun icon"></i><br>Weather
 
                             <div id="weather"></div>
                         </div>

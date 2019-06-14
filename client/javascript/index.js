@@ -145,7 +145,7 @@ function getLocation(){
     var options = {timeout:60000}
     navigator.geolocation.getCurrentPosition(showLocation)
   } else {
-    console.log('browser doesnt support geolocation')
+    console.log('Geolocation is not supported by this browser."')
   }
 }
 
@@ -166,18 +166,55 @@ function showLocation(position){
     }
   })
     .done(function(response) {
-      if (response.currently.icon == 'fog'){
-        response.currently.icon = 'cloud'
+      console.log(response.hourly.icon)
+      if (response.hourly.icon == 'clear-day'){
+        response.hourly.icon = 'CLEAR_DAY'
+
+      } else if (response.hourly.icon == 'clear-night'){
+        response.hourly.icon = 'CLEAR_NIGHT'
+
+      } else if (response.hourly.icon == 'partly-cloudy-day'){
+        response.hourly.icon = 'PARTLY_CLOUDY_DAY'
+
+      } else if (response.hourly.icon == 'partly-cloudy-night'){
+        response.hourly.icon = 'PARTLY_CLOUDY_NIGHT'
+
+      } else if (response.hourly.icon == 'cloudy'){
+        response.hourly.icon = 'CLOUDY'
+
+      } else if (response.hourly.icon == 'rain'){
+        response.hourly.icon = 'RAIN'
+
+      } else if (response.hourly.icon == 'sleet'){
+        response.hourly.icon = 'SLEET'
+
+      } else if (response.hourly.icon == 'snow'){
+        response.hourly.icon = 'SNOW'
+
+      } else if (response.hourly.icon == 'fog'){
+        response.hourly.icon = 'FOG'
+        
       }
       console.log(response)
       $('#weather').html(`
-        ${response.timezone}<br>
-        <i class="fas fa-${response.currently.icon}"></i>
-        <br>
-        ${response.currently.temperature}°C<br>
-        ${response.currently.summary}<br>
-        ${response.daily.summary}<br>
+        <canvas id="icon1" width="72" height="72"></canvas>
 
+        <div id="table1" style=justify-content:center;>
+        ${response.currently.temperature}°C<br>
+        ${response.timezone}<br>
+        ${response.currently.summary}
+        </div>
+
+        <div id="table2" style="justify-content:center;margin-top: 4%">
+        <strong>Summary:</strong><br>
+        ${response.hourly.summary}<br>
+        </div>
+
+        <script>
+        var skycons = new Skycons({"color": "teal"});
+        skycons.add("icon1", Skycons.${response.hourly.icon});
+        skycons.play();
+        </script>
       `)
     })
     .fail(function(jqXHR, textStatus) {
