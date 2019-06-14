@@ -285,6 +285,11 @@ function renderGsignIn() {
 
 function trafiRoute(result){
   let route = result["Routes"][0] // RECOMMENDED, CHEAPER, TRANSJAKARTA (based on preference labels)
+  for(let i = 0; i < result["Routes"].length; i++){
+    if(result["Routes"][i]["PreferenceLabel"] === "TRANSJAKARTA"){
+      route = result["Routes"][i]
+    }
+  }
   let duration = route["DurationMinutes"]
   let walk = route["WalkMinutes"]
   let departTime = route["DepartureTime"]
