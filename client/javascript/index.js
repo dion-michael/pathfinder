@@ -279,3 +279,33 @@ function renderGsignIn() {
     // 'onfailure': onFailure
   });
 }
+
+function trafiRoute(result){
+  let route = result["Routes"][0] // RECOMMENDED, CHEAPER, TRANSJAKARTA (based on preference labels)
+  let duration = route["DurationMinutes"]
+  let walk = route["WalkMinutes"]
+  let departTime = route["DepartureTime"]
+  let arriveTime = route["ArrivalTime"]
+  let price = route["Price"]
+  let location = []
+  for(let i = 0; i < route["RouteSegments"].length; i++){
+    let routeSegment = route["RouteSegments"][i]
+    let dispRoute = []
+    let start = {
+      lat: routeSegment["StartPoint"]["Coordinate"]["Lat"],
+      lng: routeSegment["StartPoint"]["Coordinate"]["Lng"]
+    }
+    let end = {
+      lat: routeSegment["EndPoint"]["Coordinate"]["Lat"],
+      lng: routeSegment["EndPoint"]["Coordinate"]["Lng"]
+    }
+    dispRoute.push(start)
+    dispRoute.push(end)
+    if(routeSegment["RouteSegmentType"] === 1){
+      dispRoute.push("WALKING")
+    } else {
+      dispRoute.push("DRIVING")
+    }
+    // dispRoute(start_loc, end_loc, type)
+  }
+}
