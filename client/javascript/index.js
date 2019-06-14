@@ -139,6 +139,47 @@ $("#toggle").click(function (event) {
   toggleBtn()
 })
 
+function getLocation(){
+  if(navigator.geolocation){
+    var options = {timeout:60000}
+    navigator.geolocation.getCurrentPosition(showLocation)
+  } else {
+    console.log('browser doesnt support geolocation')
+  }
+}
+
+function showLocation(position){
+  var latitude = position.coords.latitude
+  var longitude = position.coords.longitude
+  var both = `${latitude},${longitude}`
+  var coor = [latitude,longitude]
+  $.ajax({
+    url: `${url}/weather`,
+    method: "POST",
+    data: {
+      both: both,
+      coor: coor
+    },
+    headers: {
+      access_token: localStorage.getItem("access_token")
+    }
+  })
+    .done(function(response) {
+      console.log(response)
+      $('#weather').html(`
+        ${response.timezone}<br>
+        ${response.currently.icon}<br>
+        ${response.currently.temperature}°C<br>
+        ${response.currently.summary}<br>
+        ${response.daily.summary}<br>
+
+      `)
+    })
+    .fail(function(jqXHR, textStatus) {
+      console.log(jqXHR);
+    });
+}
+
 function toggleBtn() {
   if ($("#btnSubmit").html() === "Login") {
     $("#errMessage").hide()
@@ -156,7 +197,6 @@ function toggleBtn() {
 function showLogin() {
   $("#homePage").hide();
   $("#registerPage").hide();
-  loginHTML();
   $("#loginForm").show();
   $("#navbar").show();
 }
@@ -190,6 +230,7 @@ $(document).ready(function () {
   //   showLogin();
   // }
   checkLogin()
+  getLocation()
   renderGsignIn()
   $('.ui.form')
     .form({
