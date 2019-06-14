@@ -15,11 +15,16 @@
     "cors": "^2.8.5",
     "dotenv": "^8.0.0",
     "express": "^4.17.1",
+<<<<<<< HEAD
     "google": "^2.1.0",
     "google-auth-library": "^4.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.5.15",
     "morgan": "^1.9.1",
     "path": "^0.12.7"
+=======
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.5.15"
+>>>>>>> 00941e9e1d663174a94a7e0b266a83e312c075f3
   }
 }
