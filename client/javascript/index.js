@@ -82,6 +82,7 @@ function login(email, password) {
         // localStorage.setItem("email", user.email)
         $(".ui.form").removeClass("loading")
         checkLogin()
+        showHome()
       },
       404: function (err) {
         console.log(err);
@@ -139,6 +140,51 @@ $("#toggle").click(function (event) {
   toggleBtn()
 })
 
+function getLocation(){
+  if(navigator.geolocation){
+    var options = {timeout:60000}
+    navigator.geolocation.getCurrentPosition(showLocation)
+  } else {
+    console.log('browser doesnt support geolocation')
+  }
+}
+
+function showLocation(position){
+  var latitude = position.coords.latitude
+  var longitude = position.coords.longitude
+  var both = `${latitude},${longitude}`
+  var coor = [latitude,longitude]
+  $.ajax({
+    url: `${url}/weather`,
+    method: "POST",
+    data: {
+      both: both,
+      coor: coor
+    },
+    headers: {
+      access_token: localStorage.getItem("access_token")
+    }
+  })
+    .done(function(response) {
+      if (response.currently.icon == 'fog'){
+        response.currently.icon = 'cloud'
+      }
+      console.log(response)
+      $('#weather').html(`
+        ${response.timezone}<br>
+        <i class="fas fa-${response.currently.icon}"></i>
+        <br>
+        ${response.currently.temperature}°C<br>
+        ${response.currently.summary}<br>
+        ${response.daily.summary}<br>
+
+      `)
+    })
+    .fail(function(jqXHR, textStatus) {
+      console.log(jqXHR);
+    });
+}
+
 function toggleBtn() {
   if ($("#btnSubmit").html() === "Login") {
     $("#errMessage").hide()
@@ -156,7 +202,6 @@ function toggleBtn() {
 function showLogin() {
   $("#homePage").hide();
   $("#registerPage").hide();
-  loginHTML();
   $("#loginForm").show();
   $("#navbar").show();
 }
@@ -176,9 +221,9 @@ function showHome() {
 function checkLogin() {
   if (localStorage.getItem('token')) {
     $("#loginForm").hide()
-    $("#homePage").show();
+    showHome()
   } else {
-    $("#loginForm").show()
+    showLogin()
     $("#homePage").hide();
   }
 }
@@ -190,6 +235,7 @@ $(document).ready(function () {
   //   showLogin();
   // }
   checkLogin()
+  getLocation()
   renderGsignIn()
   $('.ui.form')
     .form({

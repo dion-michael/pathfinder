@@ -6,7 +6,7 @@ const cors = require('cors')
 const app = express()
 const errorHandler = require('./helpers/error-handler.js')
 
-mongoose.connect('mongodb://localhost/group_project', {
+mongoose.connect('mongodb://localhost/phase2week1', {
     useNewUrlParser: true
 })
 
