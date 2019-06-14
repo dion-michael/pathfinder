@@ -145,6 +145,7 @@ function initMap() {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
             };
+            currentLoc = pos
             map.setCenter(pos);
             var user = new google.maps.Marker({
                 position: pos,

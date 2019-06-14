@@ -1,6 +1,7 @@
 const url = "http://localhost:3000";
 let fromPos
 let toPos
+let currentLoc
 
 function register(email, password) {
   $("#errMessage").hide()
@@ -158,17 +159,17 @@ function showLocation(position) {
   var both = `${latitude},${longitude}`
   var coor = [latitude, longitude]
   $.ajax({
-      url: `${url}/weather`,
-      method: "POST",
-      data: {
-        both: both,
-        coor: coor
-      },
-      headers: {
-        access_token: localStorage.getItem("access_token")
-      }
-    })
-    .done(function (response) {
+    url: `${url}/weather`,
+    method: "POST",
+    data: {
+      both: both,
+      coor: coor
+    },
+    headers: {
+      access_token: localStorage.getItem("access_token")
+    }
+  })
+    .done(function(response) {
       console.log(response.hourly.icon)
       if (response.hourly.icon == 'clear-day') {
         response.hourly.icon = 'CLEAR_DAY'
