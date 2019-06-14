@@ -2,6 +2,10 @@ const url = "http://localhost:3000";
 let fromPos
 let toPos
 let currentLoc
+let jakarta = {
+  lat: -6.21462,
+  lng: 106.84513
+}
 
 function register(email, password) {
   $("#errMessage").hide()
@@ -136,7 +140,6 @@ function onSignIn(googleUser) {
       }
     })
 }
-
 $("#toggle").click(function (event) {
   event.preventDefault()
   toggleBtn()
@@ -159,17 +162,17 @@ function showLocation(position) {
   var both = `${latitude},${longitude}`
   var coor = [latitude, longitude]
   $.ajax({
-    url: `${url}/weather`,
-    method: "POST",
-    data: {
-      both: both,
-      coor: coor
-    },
-    headers: {
-      access_token: localStorage.getItem("access_token")
-    }
-  })
-    .done(function(response) {
+      url: `${url}/weather`,
+      method: "POST",
+      data: {
+        both: both,
+        coor: coor
+      },
+      headers: {
+        access_token: localStorage.getItem("access_token")
+      }
+    })
+    .done(function (response) {
       console.log(response.hourly.icon)
       if (response.hourly.icon == 'clear-day') {
         response.hourly.icon = 'CLEAR_DAY'
@@ -364,8 +367,18 @@ $("#findRouteBtn").click(function () {
   let to = $("#from").val()
   console.log(from);
   console.log(to);
+  findLocation()
 })
 
 function findLocation() {
+  console.log("from ", fromPos);
+  console.log(toPos);
+  console.log(jakarta);
+  let location_c = {
+    lat: -6.251461,
+    lng: 106.791731
+  }
 
+  displayRoute(fromPos, toPos, "DRIVING")
+  displayRoute(toPos, jakarta, "DRIVING")
 }
