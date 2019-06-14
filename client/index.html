@@ -18,6 +18,7 @@
     <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
     <link rel="stylesheet" href="./css/styles.css">
     <link rel="stylesheet" href="./css/map.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <title>Pathfinder</title>
     <style>
         tr {
@@ -89,7 +90,6 @@
             </div>
         </div>
     </div>
-
     <div class="ui grid" id="all-container">
         <div class="five wide column" id="side-menu">
             <div class="ui container">
@@ -106,7 +106,6 @@
                             </div>
                         </div>
                         <div class="ui attached segment" style="text-align: center">
-
                             <div id="weather"></div>
                         </div>
                         <div class="ui attached segment">
@@ -121,9 +120,13 @@
                             <button class="fluid ui teal button" id="findRouteBtn">
                                 find routes
                             </button>
+                            <div class="ui negative message" id="errMsgTop">
+                            </div>
                         </div>
                         <div class="ui attached segment">
-                            search result
+                            <div class="ui list" id="route">
+
+                            </div>
                         </div>
                         <div class="ui bottom attached segment">
                             <div class="ui bottom aligned container">

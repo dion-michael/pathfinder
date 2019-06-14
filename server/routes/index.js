@@ -4,7 +4,7 @@ const trafi = require("./trafi.js")
 const weather = require("./weather.js")
 
 routes.use('/', user)
-routes.use('/route', trafi)
+routes.use('/t', trafi)
 routes.use('/weather', weather)
 
 module.exports = routes

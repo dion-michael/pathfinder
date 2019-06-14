@@ -23,13 +23,13 @@ function initMap() {
             // The anchor point (x,y)
             new google.maps.Point(10, 10)),
         user: {
-            url: 'https://i.imgur.com/uIW18Jp.png',
+            url: 'https://media.giphy.com/media/1oF1MaxVOqrgtG4hev/giphy.gif',
             // (width,height)
-            scaledSize: new google.maps.Size(20, 20),
+            scaledSize: new google.maps.Size(80, 80),
             // The origin point (x,y)
             origin: new google.maps.Point(0, 0),
             // The anchor point (x,y)
-            anchor: new google.maps.Point(10, 20),
+            anchor: new google.maps.Point(40, 80),
         }
     }
 
@@ -72,6 +72,7 @@ function initMap() {
                     lat: place.geometry.location.lat(),
                     lng: place.geometry.location.lng()
                 };
+                startName = place.name
                 console.log(fromPos);
                 var icon = {
                     url: "https://image.flaticon.com/icons/png/128/149/149060.png",
@@ -115,7 +116,7 @@ function initMap() {
                     lat: place.geometry.location.lat(),
                     lng: place.geometry.location.lng()
                 };
-                console.log(toPos);
+                destName = place.name
                 var icon = {
                     url: "https://image.flaticon.com/icons/png/128/149/149060.png",
                     size: new google.maps.Size(71, 71),
@@ -160,31 +161,17 @@ function initMap() {
         // Browser doesn't support Geolocation
         handleLocationError(false, infoWindow, map.getCenter());
     }
-    let location_a = {
-        lat: -6.260633,
-        lng: 106.781616
-    }
-    let location_b = {
-        lat: -6.258319,
-        lng: 106.783041
-    }
-    let location_c = {
-        lat: -6.251461,
-        lng: 106.791731
-    }
-    // displayRoute(location_a, location_b, "WALKING")
-    // displayRoute(location_b, location_c, "DRIVING")
 }
 
 
 
 
-function displayRoute(location_a, location_b, method) {
+function displayRoute(location_a, location_b, method, fromName, toName) {
     // also, constructor can get "DirectionsRendererOptions" object
     var directionsService = new google.maps.DirectionsService();
     // directionsDisplay.setMap(map); // map should be already initialized.
-    var start = new google.maps.LatLng(location_a.lat, location_a.lng);
-    var end = new google.maps.LatLng(location_b.lat, location_b.lng);
+    var start = new google.maps.LatLng(location_a.Lat, location_a.Lng);
+    var end = new google.maps.LatLng(location_b.Lat, location_b.Lng);
     let strokeColor = ""
     let strokeWeight = 4
     if (method === "DRIVING") {
@@ -218,8 +205,9 @@ function displayRoute(location_a, location_b, method) {
             let route = response.routes[0]
             let leg = response.routes[0].legs[0]
             map.setCenter(route.bounds.getCenter())
-            makeMarker(leg.start_location, icons.start, "title", map)
-            makeMarker(leg.end_location, icons.end, "title", map)
+            map.setZoom(12)
+            makeMarker(leg.start_location, icons.start, fromName, map)
+            makeMarker(leg.end_location, icons.end, toName, map)
         } else {
             console.log("unable to retrieve route");
         }

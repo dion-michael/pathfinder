@@ -52,3 +52,7 @@ body>.grid {
 #all-container {
     font-family: 'Raleway', sans-serif
 }
+
+#errMsgTop {
+    display: none
+}

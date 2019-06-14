@@ -6,6 +6,8 @@ let jakarta = {
   lat: -6.21462,
   lng: 106.84513
 }
+let startName
+let destName
 
 function register(email, password) {
   $("#errMessage").hide()
@@ -65,13 +67,32 @@ $('.ui.form').submit(function (event) {
 })
 
 function logout() {
-  localStorage.removeItem("token");
-  $("#map").hide()
-  var auth2 = gapi.auth2.getAuthInstance();
-  auth2.signOut()
-    .then(function () {
-      showLogin();
-    });
+  Swal.fire({
+    title: 'Logout?',
+    text: "You have to login again after this!",
+    type: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, bye'
+  }).then((result) => {
+    if (result.value) {
+      Swal.fire(
+        'Bye!',
+        'Its sad to see you go.',
+        'success'
+      )
+      localStorage.removeItem("token");
+      $("#map").hide()
+      var auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut()
+        .then(function () {
+          showLogin();
+        });
+    }
+  })
+
+
 }
 
 function login(email, password) {
@@ -90,6 +111,11 @@ function login(email, password) {
         $(".ui.form").removeClass("loading")
         checkLogin()
         showHome()
+        Swal.fire(
+          'Hello!',
+          'Welcome Back!',
+          'success'
+        )
       },
       404: function (err) {
         console.log(err);
@@ -130,6 +156,11 @@ function onSignIn(googleUser) {
     })
     .done(function (response) {
       localStorage.setItem('access_token', response.access_token)
+      Swal.fire(
+        'Hello!',
+        'Welcome Back!',
+        'success'
+      )
       showHome()
     })
     .fail(function (jqXHR, textStatus) {
@@ -314,9 +345,9 @@ $(document).ready(function () {
 function renderGsignIn() {
   gapi.signin2.render('g-signin2', {
     'scope': 'profile email',
-    'width': 215,
+    'width': 171,
     'height': 50,
-    'longtitle': true,
+    'longtitle': false,
     'theme': 'light',
     'onsuccess': onSignIn,
     // 'onfailure': onFailure
@@ -372,13 +403,103 @@ $("#findRouteBtn").click(function () {
 
 function findLocation() {
   console.log("from ", fromPos);
-  console.log(toPos);
-  console.log(jakarta);
-  let location_c = {
-    lat: -6.251461,
-    lng: 106.791731
-  }
-
-  displayRoute(fromPos, toPos, "DRIVING")
-  displayRoute(toPos, jakarta, "DRIVING")
+  console.log("to", toPos);
+  let start_lat = fromPos.lat
+  let start_lng = fromPos.lng
+  let end_lat = toPos.lat
+  let end_lng = toPos.lng
+  $.ajax({
+    url: `${url}/t/routes`,
+    method: "POST",
+    data: {
+      start_lat,
+      start_lng,
+      end_lat,
+      end_lng
+    },
+    statusCode: {
+      200: function (route) {
+        console.log(route);
+        var busRoute = route.Routes.filter(function (el) {
+          return el.PreferenceLabel === "TRANSJAKARTA"
+        });
+        console.log(busRoute);
+        if (busRoute.length === 0) {
+          console.log('masuk ke 0');
+          let message = "Route not found"
+          $("#errMsgTop").empty()
+          $("#errMsgTop").transition()
+          $("#errMsgTop").append(
+            `<div class="header">
+                ${message}
+            </div>`
+          )
+          // $("#errMsgTop").show()
+          setTimeout(function () {
+            $("#errMsgTop").transition()
+          }, 3000)
+        } else {
+          console.log(busRoute);
+          $("#route").empty()
+          $("#route").append(
+            `<div class="item">
+                  <i class="male icon"></i>
+                  <div class="content">
+                      <a class="header">${startName}</a>
+                  </div>
+              </div>`
+          )
+          busRoute[0].RouteSegments.forEach((stop, index) => {
+            console.log(stop);
+            let dari = stop.StartPoint.Coordinate
+            let ke = stop.EndPoint.Coordinate
+            let method = "DRIVING"
+            let fromName = stop.StartPoint.Name
+            let toName = stop.EndPoint.Name
+            let icon = "bus"
+            let desc = ""
+            console.log(startName);
+            if (index === busRoute[0].RouteSegments.length - 1) {
+              stop.EndPoint.Name = destName
+            }
+            if (stop.RouteSegmentType === 1) {
+              method = "WALKING"
+              icon = "blind"
+              desc = `walk for ${stop.DistanceMeters} meters towards ${stop.EndPoint.Name}`
+            }
+            if (stop.RouteSegmentType === 2) {
+              desc = `use ${stop.Transport.Name} ${stop.Transport.Direction} for ${stop.DurationMinutes} minutes`
+            }
+            $("#route").append(
+              `<div class="item">
+                  <i class="${icon} icon"></i>
+                  <div class="content">
+                      <a class="header">${stop.StartPoint.Name}</a>
+                      <div class="description">${desc}</div>
+                  </div>
+              </div>`
+            )
+            displayRoute(dari, ke, method, fromName, toName)
+          })
+          $("#route").append(
+            `<div class="item">
+                  <i class="male icon"></i>
+                  <div class="content">
+                      <a class="header">${destName}</a>
+                  </div>
+              </div>`
+          )
+        }
+      },
+      404: function (err) {
+        console.log(err);
+      },
+      400: function (err) {
+        console.log(err);
+      },
+      500: function (err) {
+        console.log(err);
+      }
+    }
+  })
 }
