@@ -287,17 +287,21 @@ function trafiRoute(result){
   let departTime = route["DepartureTime"]
   let arriveTime = route["ArrivalTime"]
   let price = route["Price"]
-  let location = []
+  let location = []  
   for(let i = 0; i < route["RouteSegments"].length; i++){
     let routeSegment = route["RouteSegments"][i]
     let dispRoute = []
     let start = {
+      name: routeSegment["StartPoint"]["Name"],
       lat: routeSegment["StartPoint"]["Coordinate"]["Lat"],
-      lng: routeSegment["StartPoint"]["Coordinate"]["Lng"]
+      lng: routeSegment["StartPoint"]["Coordinate"]["Lng"],
+      time: routeSegment["StartPoint"]["Time"]
     }
     let end = {
+      name: routeSegment["EndPoint"]["Name"],
       lat: routeSegment["EndPoint"]["Coordinate"]["Lat"],
-      lng: routeSegment["EndPoint"]["Coordinate"]["Lng"]
+      lng: routeSegment["EndPoint"]["Coordinate"]["Lng"],
+      time: routeSegment["EndPoint"]["Time"]
     }
     dispRoute.push(start)
     dispRoute.push(end)
@@ -307,5 +311,6 @@ function trafiRoute(result){
       dispRoute.push("DRIVING")
     }
     // dispRoute(start_loc, end_loc, type)
+    location.push(dispRoute)        
   }
 }
