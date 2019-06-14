@@ -158,21 +158,6 @@ function showLocation(position) {
   var both = `${latitude},${longitude}`
   var coor = [latitude, longitude]
   $.ajax({
-<<<<<<< HEAD
-      url: `${url}/weather`,
-      method: "POST",
-      data: {
-        both: both,
-        coor: coor
-      },
-      headers: {
-        access_token: localStorage.getItem("access_token")
-      }
-    })
-    .done(function (response) {
-      if (response.currently.icon == 'fog') {
-        response.currently.icon = 'cloud'
-=======
     url: `${url}/weather`,
     method: "POST",
     data: {
@@ -212,7 +197,6 @@ function showLocation(position) {
       } else if (response.hourly.icon == 'fog'){
         response.hourly.icon = 'FOG'
         
->>>>>>> 2
       }
       console.log(response)
       $('#weather').html(`
