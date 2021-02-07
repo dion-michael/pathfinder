@@ -1,0 +1,161 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta name="google-signin-client_id"
+        content="895569067234-f405kfpghfta7fduvlpqderjcb8torjl.apps.googleusercontent.com">
+    <link href="/assets/logo.png" type="image/x-icon" rel="icon" />
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Semantic CSS -->
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <link href="https://fonts.googleapis.com/css?family=Raleway&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css"
+        integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+    <script src="https://rawgithub.com/darkskyapp/skycons/master/skycons.js"></script>
+    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/map.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+    <title>Pathfinder</title>
+    <style>
+        tr {
+            vertical-align: top;
+            text-align: center;
+        }
+
+        #table2 {
+            display: block;
+        }
+
+        #icon:hover+#table2 {
+            display: block;
+        }
+
+        #table1:hover+#table2 {
+            display: block;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="ui middle aligned center aligned grid" id="loginForm">
+        <div class="column">
+            <h2 class="ui teal image header">
+                <img src="./assets/logo.png" class="image" id="loginImg">
+                <div class="content">
+                    Pathfinder
+                </div>
+            </h2>
+            <form class="ui large form">
+                <div class="ui stacked segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="email" placeholder="E-mail address">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="Password">
+                        </div>
+                    </div>
+                    <div class="ui fluid large teal submit button" id="btnSubmit">Login</div>
+                </div>
+
+                <div class="ui error message"></div>
+
+            </form>
+
+            <div class="ui icon negative message" id="errMessage">
+                <i class="exclamation icon"></i>
+                <div class="content" id="errMessageText">
+
+                </div>
+            </div>
+
+            <div class="ui message" style="text-align: center">
+                <span id="toggleText">New to us?</span>
+                <a href="" id="toggle">Register</a>
+                <div>or</div>
+                <div class="ui one column stackable center aligned page grid" style="margin-top: 1px">
+                    <div class="column twelve wide">
+                        <div id="g-signin2" data-onsuccess="onSignIn"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="ui grid" id="all-container">
+        <div class="five wide column" id="side-menu">
+            <div class="ui container">
+                <div id="page">
+                    <div id="homePage">
+                        <div class="ui top attached segment">
+                            <div class="ui center aligned container">
+                                <h2 class="ui teal image header">
+                                    <img src="./assets/logo.png" class="image" id="loginImg">
+                                    <div class="content">
+                                        Pathfinder
+                                    </div>
+                                </h2>
+                            </div>
+                        </div>
+                        <div class="ui attached segment" style="text-align: center">
+                            <div id="weather"></div>
+                        </div>
+                        <div class="ui attached segment">
+                            <div class="fluid ui left icon input" style="margin-bottom: 10px">
+                                <input type="text" placeholder="from" id="from">
+                                <i class="map marker alternate icon"></i>
+                            </div>
+                            <div class="fluid ui left icon input" style="margin-bottom: 10px">
+                                <input type="text" placeholder="to" id="to">
+                                <i class="map marker alternate icon"></i>
+                            </div>
+                            <button class="fluid ui teal button" id="findRouteBtn">
+                                find routes
+                            </button>
+                            <div class="ui negative message" id="errMsgTop">
+                            </div>
+                        </div>
+                        <div class="ui attached segment">
+                            <div class="ui list" id="route">
+
+                            </div>
+                        </div>
+                        <div class="ui bottom attached segment">
+                            <div class="ui bottom aligned container">
+                                <button class="fluid ui button" id="logoutButton" onclick="logout()">
+                                    Logout
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="eleven wide column" id="map-container">
+            <div id="map"></div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"
+        integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="./javascript/Gmap.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBvszf7pWDZ7MA-umkI-U7EEAj8jTYTLDQ
+        &callback=initMap&libraries=places" async defer></script>
+    <script src="./javascript/mapStyle.js"></script>
+    <script src="https://apis.google.com/js/platform.js"></script>
+
+    <script src="./javascript/index.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous">
+    </script>
+</body>
+
+</html>
